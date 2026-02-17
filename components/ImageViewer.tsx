@@ -30,9 +30,12 @@ export default function ImageViewer({ images, themeName, themeColor, priority = 
     const containerRef = useRef<HTMLDivElement>(null)
     const imageContainerRef = useRef<HTMLDivElement>(null)
 
-    // Reset zoom state when images change
+    // Reset state and scroll position when images change
     useEffect(() => {
         setIsZoomed(false)
+        if (imageContainerRef.current) {
+            imageContainerRef.current.scrollTop = 0
+        }
     }, [images])
 
     const toggleFullscreen = async () => {

@@ -17,14 +17,13 @@ export default function FeedbackForm() {
 
     const [formData, setFormData] = useState({
         name: '',
-        department: '',
         preferred_color: '' as 'green' | 'purple' | 'blue' | '',
         remark: '',
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState('')
 
-    const isFormValid = formData.name.trim() && formData.department.trim() && formData.preferred_color
+    const isFormValid = formData.name.trim() && formData.preferred_color
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -36,7 +35,7 @@ export default function FeedbackForm() {
         try {
             const feedbackData: FeedbackData = {
                 name: formData.name.trim(),
-                department: formData.department.trim(),
+                department: 'N/A', // Default value since field is removed but DB requires it
                 preferred_color: formData.preferred_color as 'green' | 'purple' | 'blue',
                 remark: formData.remark.trim() || undefined,
                 viewed_green: JSON.parse(sessionStorage.getItem('viewedThemes') || '{}').green || false,
@@ -77,21 +76,7 @@ export default function FeedbackForm() {
                 />
             </div>
 
-            {/* Department Field */}
-            <div>
-                <label htmlFor="department" className="block text-sm font-medium text-slate-600 mb-1.5 sm:mb-2">
-                    {t('form.department')} <span className="text-red-500">*</span>
-                </label>
-                <input
-                    type="text"
-                    id="department"
-                    value={formData.department}
-                    onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                    className="input-field text-sm sm:text-base"
-                    placeholder={t('form.departmentPlaceholder')}
-                    required
-                />
-            </div>
+            {/* Department Field Removed as per request */}
 
             {/* Preferred Theme Selection */}
             <div>
@@ -134,7 +119,7 @@ export default function FeedbackForm() {
             {/* Remarks Field */}
             <div>
                 <label htmlFor="remark" className="block text-sm font-medium text-slate-600 mb-1.5 sm:mb-2">
-                    {t('form.feedback') || 'Feedback'} <span className="text-slate-400">({t('form.optional') || 'Optional'})</span>
+                    {t('form.feedback') || 'Feedback'}
                 </label>
                 <textarea
                     id="remark"
