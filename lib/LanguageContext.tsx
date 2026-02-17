@@ -35,6 +35,7 @@ const translations = {
         'review.proceedFeedback': 'Proceed to Feedback',
         'review.previous': 'Previous',
         'review.next': 'Next',
+        'review.nextTheme': 'Next Theme',
         'review.viewAll': 'Please view all themes to continue',
 
         // Progress tracker
@@ -117,6 +118,7 @@ const translations = {
         'review.proceedFeedback': 'फीडबैक दें',
         'review.previous': 'पिछला',
         'review.next': 'अगला',
+        'review.nextTheme': 'अगली थीम',
         'review.viewAll': 'कृपया जारी रखने के लिए सभी थीम देखें',
 
         // Progress tracker
