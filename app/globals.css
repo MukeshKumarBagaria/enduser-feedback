@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 30, 41, 59;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 241, 245, 249;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(135deg,
+      rgb(var(--background-start-rgb)) 0%,
+      rgb(var(--background-end-rgb)) 100%);
+  min-height: 100vh;
+}
+
+/* Glassmorphism card effect - Light Theme */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Theme-specific borders */
+.border-theme-green {
+  border-color: #22c55e;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+}
+
+.border-theme-purple {
+  border-color: #a855f7;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+.border-theme-blue {
+  border-color: #3b82f6;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 transform hover:scale-105;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
+
+.btn-primary:disabled {
+  @apply opacity-50 cursor-not-allowed transform-none;
+  box-shadow: none;
+}
+
+.btn-success {
+  @apply px-8 py-4 rounded-xl font-semibold text-white transition-all duration-300 transform hover:scale-105;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+}
+
+.btn-success:hover {
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
+}
+
+.btn-success:disabled {
+  @apply opacity-50 cursor-not-allowed transform-none;
+  box-shadow: none;
+}
+
+/* Input styles - Light Theme */
+.input-field {
+  @apply w-full px-4 py-3 rounded-lg transition-all duration-300;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: #1e293b;
+}
+
+.input-field:focus {
+  @apply outline-none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.input-field::placeholder {
+  color: rgba(30, 41, 59, 0.5);
+}
+
+/* Radio button styles - Light Theme */
+.radio-card {
+  @apply relative p-4 rounded-xl cursor-pointer transition-all duration-300;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.radio-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.radio-card.selected {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.radio-card input[type="radio"] {
+  @apply absolute opacity-0;
+}
+
+/* PDF viewer container */
+.pdf-container {
+  @apply rounded-xl overflow-hidden;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Progress bar - Light Theme */
+.progress-step {
+  @apply w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500;
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  color: #64748b;
+}
+
+.progress-step.completed {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-color: #22c55e;
+  color: white;
+}
+
+.progress-step.active {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border-color: #6366f1;
+  color: white;
+  @apply ring-4 ring-indigo-500/20;
+}
+
+.progress-line {
+  @apply h-1 flex-1 mx-2 rounded-full transition-all duration-500;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.progress-line.completed {
+  background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+}
+
+/* Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scrollbar - Light Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
