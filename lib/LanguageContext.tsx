@@ -14,7 +14,7 @@ const translations = {
     en: {
         // Home page
         'home.badge': 'MP Government User Research',
-        'home.title': 'IFMIS NEXT GEN Theme Preference',
+        'home.title': 'IFMIS NEXT GEN Theme Preference And Feedback Survey',
         'home.subtitle': 'Help us choose the best interface for the MP Government IFMIS NEXT GEN application. Your feedback is crucial for creating an efficient and user-friendly system for all government employees.',
         'home.howItWorks': 'Evaluation Process',
         'home.step1.title': 'Review Three Themes',
@@ -97,7 +97,7 @@ const translations = {
     hi: {
         // Home page
         'home.badge': 'मप्र शासन उपयोगकर्ता अनुसंधान',
-        'home.title': 'IFMIS NEXT GEN थीम वरीयता',
+        'home.title': 'IFMIS NEXT GEN थीम वरीयता और फीडबैक सर्वेक्षण',
         'home.subtitle': 'मप्र शासन IFMIS NEXT GEN एप्लिकेशन के लिए सबसे अच्छा इंटरफ़ेस चुनने में हमारी सहायता करें। सभी सरकारी कर्मचारियों के लिए एक कुशल और उपयोगकर्ता के अनुकूल प्रणाली बनाने के लिए आपकी प्रतिक्रिया महत्वपूर्ण है।',
         'home.howItWorks': 'मूल्यांकन प्रक्रिया',
         'home.step1.title': 'तीन थीम देखें',
@@ -182,7 +182,7 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-    const [language, setLanguageState] = useState<Language | null>(null)
+    const [language, setLanguageState] = useState<Language | null>('en')
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
@@ -248,14 +248,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         )
     }
 
-    // Loading state
-    if (!isLoaded) {
-        return (
-            <main className="min-h-screen flex items-center justify-center">
-                <div className="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-4 border-slate-200 border-t-indigo-600"></div>
-            </main>
-        )
-    }
+    // Loading state removed as per user request to improve UX
+    // if (!isLoaded) { ... }
+
 
     return (
         <LanguageContext.Provider value={{ language: language!, setLanguage, t }}>

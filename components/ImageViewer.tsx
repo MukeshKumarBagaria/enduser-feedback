@@ -25,17 +25,13 @@ const borderColors = {
 
 export default function ImageViewer({ images, themeName, themeColor, priority = false }: ImageViewerProps) {
     const { language } = useLanguage()
-    const [loadedCount, setLoadedCount] = useState(0)
     const [isFullscreen, setIsFullscreen] = useState(false)
     const [isZoomed, setIsZoomed] = useState(false)
     const containerRef = useRef<HTMLDivElement>(null)
     const imageContainerRef = useRef<HTMLDivElement>(null)
 
-    const isLoading = loadedCount < images.length
-
-    // Reset loading state when images change
+    // Reset zoom state when images change
     useEffect(() => {
-        setLoadedCount(0)
         setIsZoomed(false)
     }, [images])
 
@@ -57,7 +53,6 @@ export default function ImageViewer({ images, themeName, themeColor, priority = 
 
     const zoomText = language === 'hi' ? (isZoomed ? 'ज़ूम आउट' : 'ज़ूम इन') : (isZoomed ? 'Zoom Out' : 'Zoom In')
     const fullscreenText = language === 'hi' ? 'पूर्ण स्क्रीन' : 'Fullscreen'
-    const loadingText = language === 'hi' ? 'लोड हो रहा है...' : 'Loading...'
 
     return (
         <div
@@ -110,18 +105,6 @@ export default function ImageViewer({ images, themeName, themeColor, priority = 
                 }}
                 onClick={toggleZoom}
             >
-                {/* Loading Indicator - Skeleton */}
-                {isLoading && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-slate-100 animate-pulse z-10 pointer-events-none">
-                        <div className="flex flex-col items-center gap-3 opacity-50">
-                            <svg className="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            <p className="text-slate-400 font-medium text-sm">{loadingText}</p>
-                        </div>
-                    </div>
-                )}
-
                 {/* Images Stack */}
                 <div className={`w-full flex flex-col items-center gap-4 ${isZoomed ? 'p-4' : 'p-0'}`}>
                     {images.map((imgUrl, index) => (
@@ -136,7 +119,6 @@ export default function ImageViewer({ images, themeName, themeColor, priority = 
                                 maxWidth: isZoomed ? 'none' : '100%',
                                 width: isZoomed ? '150%' : '100%',
                             }}
-                            onLoad={() => setLoadedCount(prev => prev + 1)}
                             priority={priority && index === 0}
                             quality={90}
                         />
